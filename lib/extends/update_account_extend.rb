@@ -12,6 +12,7 @@ module UpdateAccountExtend
       @user.email = @form.email
       @user.full_address = @form.full_address
       @user.custom_agreement_at = DateTime.now if @form.custom_agreement
+      @user.email_on_notification = @form.email_on_notification
     end
 
   end

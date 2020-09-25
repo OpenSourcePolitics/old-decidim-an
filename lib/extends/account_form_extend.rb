@@ -7,6 +7,7 @@ module AccountFormExtend
 
   included do
 
+    attribute :email_on_notification, Virtus::Attribute::Boolean
     attribute :custom_agreement, Virtus::Attribute::Boolean
     attribute :full_address, String
 

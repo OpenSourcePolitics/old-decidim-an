@@ -51,6 +51,16 @@
 
           <%= f.email_field :email %>
 
+          <% if current_user.admin? %>
+            <div class="switch tiny switch-with-label email_on_notification">
+              <%= f.label :email_on_notification do %>
+                <%= f.check_box :email_on_notification, label: false, class: "switch-input" %>
+                <span class="switch-paddle"></span>
+                <span class="switch-label"><%= t("email_on_notification", scope:"decidim.notifications_settings.show") %></span>
+              <% end %>
+            </div>
+          <% end %>
+
           <%= f.text_area :full_address, rows: 2, maxlength: 256, class: ""  %>
           <%= f.check_box :custom_agreement, label: t(".custom_agreement") %>
 
