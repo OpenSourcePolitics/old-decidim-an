@@ -9,11 +9,7 @@ module OmniauthRegistrationFormExtend
     include Decidim::JsonbAttributes
 
     def self.extra_params
-      [:custom_agreement, :number_and_street,
-       :address_complement,
-       :postal_code,
-       :city,
-       :country]
+      [:custom_agreement, :full_address]
     end
 
     attribute :custom_agreement, Virtus::Attribute::Boolean
