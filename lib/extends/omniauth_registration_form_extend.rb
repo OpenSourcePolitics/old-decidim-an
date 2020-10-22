@@ -6,17 +6,24 @@ module OmniauthRegistrationFormExtend
   extend ActiveSupport::Concern
 
   included do
+    include Decidim::JsonbAttributes
 
     def self.extra_params
-      [:custom_agreement, :full_address]
+      [:custom_agreement, :number_and_street,
+       :address_complement,
+       :postal_code,
+       :city,
+       :country]
     end
 
     attribute :custom_agreement, Virtus::Attribute::Boolean
-    attribute :number_and_street, String
-    attribute :address_complement, String
-    attribute :postal_code, String
-    attribute :city, String
-    attribute :country, String
+    jsonb_attribute :address, [
+        [:number_and_street, String],
+        [:address_complement, String],
+        [:postal_code, Integer],
+        [:city, String],
+        [:country, String]
+    ]
 
     validates :email, 'valid_email_2/email': { mx: true }
     validates :name, presence: true
