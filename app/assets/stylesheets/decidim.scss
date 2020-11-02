@@ -610,6 +610,17 @@ main.anonymous {
 #user-settings-tabs li:nth-of-type(2),
 #user-settings-tabs li:nth-of-type(4) { display: none; }
 
+.change-address {
+  text-align: left;
+  a {
+    text-transform: uppercase;
+    // font-variant: small-caps;
+  }
+}
+
+#addressChange {
+  padding-bottom: 1rem;
+}
 
 // ------------------------------------------------------------------
 // COMPONENTS

@@ -65,25 +65,31 @@
 
           <%= f.text_field :full_address, value: current_user.try(:full_address) || "", readonly: true %>
 
-          <div class="field">
-            <%= f.text_field :number_and_street %>
-          </div>
+          <p class="help-text change-address">
+            <a data-toggle="addressChange" class=""><%= t ".change_address" %></a>
+          </p>
 
-          <div class="field">
-            <%= f.text_field :address_complement %>
-          </div>
+          <blockquote id="addressChange" class="toggle-show" data-toggler=".is-expanded">
+            <div class="field">
+              <%= f.text_field :number_and_street %>
+            </div>
 
-          <div class="field">
-            <%= f.text_field :postal_code %>
-          </div>
+            <div class="field">
+              <%= f.text_field :address_complement %>
+            </div>
 
-          <div class="field">
-            <%= f.text_field :city %>
-          </div>
+            <div class="field">
+              <%= f.text_field :postal_code %>
+            </div>
 
-          <div class="field">
-            <%= f.text_field :country %>
-          </div>
+            <div class="field">
+              <%= f.text_field :city %>
+            </div>
+
+            <div class="field">
+              <%= f.text_field :country %>
+            </div>
+          </blockquote>
 
           <%= f.check_box :custom_agreement, label: t(".custom_agreement") %>
 
