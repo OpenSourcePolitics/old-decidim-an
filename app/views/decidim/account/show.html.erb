@@ -37,7 +37,7 @@
           <%= decidim_form_for current_user, as: :user, url: user_confirmation_path, html: { method: :post, class: "register-form new_user" } do |f| %>
             <%= f.hidden_field :email, value: current_user.unconfirmed_email %>
             <p>
-              <%== t(".unconfirmed_email", email: current_user.unconfirmed_email ) %>
+              <%== t(".unconfirmed_email", email: current_user.unconfirmed_email) %>
             </p>
             <%= f.submit t("devise.confirmations.new.resend_confirmation_instructions"), class: "button hollow expanded small" %>
           <% end %>
@@ -56,9 +56,11 @@
               <%= f.label :email_on_notification do %>
                 <%= f.check_box :email_on_notification, label: false, class: "switch-input" %>
                 <span class="switch-paddle"></span>
-                <span class="switch-label"><%= t("email_on_notification", scope:"decidim.notifications_settings.show") %></span>
+                <span class="switch-label"><%= t("email_on_notification", scope: "decidim.notifications_settings.show") %></span>
               <% end %>
             </div>
+          <% else %>
+            <%= f.hidden_field :email_on_notification, value: @account.email_on_notification %>
           <% end %>
 
           <%= f.text_field :full_address, value: current_user.try(:full_address) || "", readonly: true %>
@@ -86,7 +88,7 @@
           <%= f.check_box :custom_agreement, label: t(".custom_agreement") %>
 
           <div class="actions">
-            <%= f.submit t(".update_account"),class: "button expanded"  ,disable_with: true %>
+            <%= f.submit t(".update_account"), class: "button expanded", disable_with: true %>
           </div>
         <% end %>
 
