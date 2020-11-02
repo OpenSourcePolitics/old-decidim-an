@@ -6,13 +6,20 @@ module OmniauthRegistrationFormExtend
   extend ActiveSupport::Concern
 
   included do
+    include Decidim::JsonbAttributes
 
     def self.extra_params
       [:custom_agreement, :full_address]
     end
 
     attribute :custom_agreement, Virtus::Attribute::Boolean
-    attribute :full_address, String
+    jsonb_attribute :address, [
+        [:number_and_street, String],
+        [:address_complement, String],
+        [:postal_code, Integer],
+        [:city, String],
+        [:country, String]
+    ]
 
     validates :email, 'valid_email_2/email': { mx: true }
     validates :name, presence: true
@@ -20,8 +27,10 @@ module OmniauthRegistrationFormExtend
     validates :uid, presence: true
     validates :custom_agreement, acceptance: true
 
-    validates :email, :full_address, presence: true, unless: -> (form) { form.email.blank? }
-    validates_length_of :full_address, maximum: 256, allow_blank: false, unless: -> (form) { form.email.blank? }
+    validates :email, :number_and_street,
+              :postal_code,
+              :city,
+              :country, presence: true, unless: -> (form) { form.email.blank? }
 
     validate :email, :email_is_unique, unless: -> (form) { form.email.blank? }
 
@@ -34,11 +43,14 @@ module OmniauthRegistrationFormExtend
       # Rails.logger.debug (((Time.zone.now - raw_data.dig(:extra, :raw_info, :birthdate).to_time) / 1.year.seconds).floor > manifest.dig(:minimum_age).to_i)
       # Rails.logger.debug "+++ ++++++++++++++++ +++"
 
-      if (((Time.zone.now - raw_data.dig(:extra, :raw_info, :birthdate).to_time) / 1.year.seconds).floor > manifest.dig(:minimum_age).to_i)
-        return true
+      if ((Time.zone.now - raw_data.dig(:extra, :raw_info, :birthdate).to_time) / 1.year.seconds).floor > manifest.dig(:minimum_age).to_i
+        true
       else
-        errors.add(:minimum_age, I18n.t("decidim.verifications.omniauth.errors.minimum_age", minimum_age: manifest.dig(:minimum_age), locale: I18n.locale))
-        return false
+        errors.add(:minimum_age,
+                   I18n.t("decidim.verifications.omniauth.errors.minimum_age",
+                          minimum_age: manifest.dig(:minimum_age),
+                          locale: I18n.locale))
+        false
       end
     end
 

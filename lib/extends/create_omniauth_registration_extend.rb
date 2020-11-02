@@ -72,7 +72,8 @@ module CreateOmniauthRegistrationExtend
           @user.password = generated_password
           @user.password_confirmation = generated_password
 
-          @user.full_address = form.full_address
+          @user.address = form.address
+          @user.full_address = computed_full_address
           @user.custom_agreement_at = DateTime.now if form.custom_agreement
 
           # TODO: raise ActiveRecord::RecordInvalid because of quality setting on uploader, this line is a quick fix
@@ -87,6 +88,11 @@ module CreateOmniauthRegistrationExtend
       @user.save!
     end
 
+    private
+
+    def computed_full_address
+      "#{form.number_and_street}, #{form.city} #{form.postal_code}, #{form.country}"
+    end
   end
 end
 

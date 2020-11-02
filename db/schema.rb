@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_10_132432) do
+ActiveRecord::Schema.define(version: 2020_10_22_120625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -1558,6 +1558,7 @@ ActiveRecord::Schema.define(version: 2020_09_10_132432) do
     t.string "full_address"
     t.boolean "custom_agreement"
     t.datetime "custom_agreement_at"
+    t.jsonb "address", default: {}, null: false
     t.index ["confirmation_token"], name: "index_decidim_users_on_confirmation_token", unique: true
     t.index ["decidim_organization_id"], name: "index_decidim_users_on_decidim_organization_id"
     t.index ["id", "type"], name: "index_decidim_users_on_id_and_type"

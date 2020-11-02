@@ -9,7 +9,13 @@ fr:
         title: Titre
         weight: Ordre de présentation
       user:
+        address_complement: Complément d'adresse
+        city: Commune
+        country: Pays
         full_address: Votre adresse postale
+        number_and_street: Numéro et libellé de la voie
+        postal_code: Code postal
+
     models:
       decidim/attachment_created_event: Pièce jointe
   decidim:
@@ -140,6 +146,8 @@ fr:
       metadata:
         content:
           active_email: "<b>Cet utilisateur peut être contacté aux coordonnées suivantes: <p><a href=\"mailto:%{email}\">%{email}</a><br/>%{full_address}</p></b>"
+          address_complement: "Complément d'adresse : %{address_complement}"
+
   devise:
     mailer:
       confirmation_instructions:

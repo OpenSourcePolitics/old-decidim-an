@@ -44,7 +44,23 @@
               </div>
 
               <div class="field">
-                <%= f.text_area :full_address, rows: 2, maxlength: 256, class: ""  %>
+                <%= f.text_field :number_and_street %>
+              </div>
+
+              <div class="field">
+                <%= f.text_field :address_complement %>
+              </div>
+
+              <div class="field">
+                <%= f.text_field :postal_code %>
+              </div>
+
+              <div class="field">
+                <%= f.text_field :city %>
+              </div>
+
+              <div class="field">
+                <%= f.text_field :country %>
               </div>
 
               <div class="field custom_agreement">
