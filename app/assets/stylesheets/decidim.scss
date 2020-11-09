@@ -682,6 +682,10 @@ main.anonymous {
   .tags--initiative {
     margin-top: 1rem;
   }
+
+  .progress__bar__number, .progress__bar__total {
+    white-space: nowrap;
+  }
 }
 
 .initiative-description {
