@@ -59,7 +59,7 @@ module OmniauthRegistrationFormExtend
 
       return if minimum_age.blank?
 
-      Time.zone.now.change(hour: 0, min: 0) -  minimum_age.years
+      Time.zone.now -  minimum_age.years
     end
 
     def birth_date
