@@ -43,7 +43,7 @@ module OmniauthRegistrationFormExtend
       # Rails.logger.debug (((Time.zone.now - raw_data.dig(:extra, :raw_info, :birthdate).to_time) / 1.year.seconds).floor > manifest.dig(:minimum_age).to_i)
       # Rails.logger.debug "+++ ++++++++++++++++ +++"
 
-      if ((Time.zone.now - raw_data.dig(:extra, :raw_info, :birthdate).to_time) / 1.year.seconds).floor > manifest.dig(:minimum_age).to_i
+      if ((Time.zone.now - raw_data.dig(:extra, :raw_info, :birthdate).to_time) / 1.year.seconds).floor >= manifest.dig(:minimum_age).to_i
         true
       else
         errors.add(:minimum_age,
