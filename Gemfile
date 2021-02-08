@@ -59,7 +59,9 @@ group :development do
 end
 
 group :production do
-  gem "sentry-raven"
+  gem "sentry-ruby"
+  gem "sentry-rails"
+  gem "sentry-sidekiq"
   gem "sidekiq"
   gem "sidekiq-scheduler"
   gem "fog-aws"
