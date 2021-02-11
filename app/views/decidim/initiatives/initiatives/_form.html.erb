@@ -17,7 +17,9 @@
   %>
 </div>
 
-<% unless single_initiative_type? %>
+<% if single_initiative_type? %>
+  <%= form.hidden_field :type_id, value: initiative_type_options.first.last %>
+<% else %>
   <div class="field">
     <%= form.select :type_id,
                     initiative_type_options,
@@ -39,7 +41,6 @@
     <%= form.date_field :signature_end_date, disabled: !allowed_to?(:update, :initiative, initiative: current_initiative) %>
   </div>
 <% end %>
-
 
 <% if current_initiative.type.attachments_enabled? %>
   <fieldset>
