@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: https://github.com/OpenSourcePolitics/decidim.git
-  revision: b235cdecbdca3d43386b94254e5491d799fba6ff
+  revision: bf0550548be546c6fa9b3c527d53150b063fc52c
   branch: alt/petition_merge
   specs:
     decidim (0.22.0.dev)
@@ -912,7 +912,7 @@ DEPENDENCIES
   wkhtmltopdf-binary
 
 RUBY VERSION
-   ruby 2.6.0p0
+   ruby 2.6.5p114
 
 BUNDLED WITH
    2.2.9
