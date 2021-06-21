@@ -36,6 +36,8 @@ gem "wkhtmltopdf-binary"
 
 gem 'activerecord-session_store'
 
+gem "letter_opener_web", "~> 1.3"
+
 # gem "omniauth-oauth2", ">= 1.4.0", "< 2.0"
 gem "omniauth_openid_connect", "0.3.1"
 # gem "omniauth-saml", "~> 1.10"
@@ -51,7 +53,6 @@ group :development, :test do
 end
 
 group :development do
-  gem "letter_opener_web", "~> 1.3"
   gem "listen", "~> 3.1"
   gem "spring", "~> 2.0"
   gem "spring-watcher-listen", "~> 2.0"
