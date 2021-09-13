@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 # Default CarrierWave setup.
-
 unless Rails.env.development? || Rails.env.test?
   CarrierWave.configure do |config|
     if Rails.application.secrets.dig(:scaleway, :id).blank?
@@ -31,7 +30,6 @@ unless Rails.env.development? || Rails.env.test?
           'X-Content-Type-Options' => "nosniff"
       }
     end
-
     # This needs to be set for correct attachment file URLs in emails
     # DON'T FORGET to ALSO set this in `config/application.rb`
     # config.asset_host = "https://ppan-mono.opensourcepolitics.net"
