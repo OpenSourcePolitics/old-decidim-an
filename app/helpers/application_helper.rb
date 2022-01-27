@@ -33,4 +33,12 @@ module ApplicationHelper
   def existing_author?(author_id)
     Decidim::User.find(author_id).delete_reason.nil?
   end
+
+  def static_page_topics_in_footer
+    @static_page_topics_in_footer ||= current_organization.static_page_topics.where(show_in_footer: true)
+  end
+
+  def static_pages_in_footer
+    @static_pages_in_footer ||= current_organization.static_pages.where(show_in_footer: true)
+  end
 end
