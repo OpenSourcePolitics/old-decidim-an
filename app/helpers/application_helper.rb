@@ -17,11 +17,22 @@ module ApplicationHelper
   end
 
   def omniauth_buttons_cache_digest
-    Digest::MD5.hexdigest(current_organization.cache_version + request_digest + request_available_authorizations)
+    current_organization.cache_version + request_digest + request_available_authorizations
   end
 
   def request_digest
+    return "" if frozen_cache?(request.env['PATH_INFO'])
+
     request.env['PATH_INFO']
+  end
+
+  # Disable cache for specific routes
+  def frozen_cache?(request)
+    return true if request == "/"
+    return true if request.start_with?("/404")
+    return true if request.start_with?("/pages")
+
+    false
   end
 
   def request_available_authorizations
