@@ -9,7 +9,7 @@ module ApplicationHelper
   private
 
   def available_authorizations?
-    !(request.env.dig(:available_authorizations).nil? || request.env.dig(:available_authorizations).empty?)
+    request.env.dig(:available_authorizations).present?
   end
 
   def omniauth_buttons_cache_version
@@ -36,7 +36,7 @@ module ApplicationHelper
   end
 
   def request_available_authorizations
-    return '' if request.env.dig(:available_authorizations).nil? || request.env.dig(:available_authorizations).empty?
+    return '' if request.env.dig(:available_authorizations).blank?
 
     '/' + request.env.dig(:available_authorizations).join('-')
   end
