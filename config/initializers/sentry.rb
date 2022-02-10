@@ -9,8 +9,8 @@ if Rails.application.secrets.dig(:sentry, :enabled)
     # We recommend adjusting the value in production:
     config.traces_sample_rate = ENV.fetch("SENTRY_SAMPLE_RATE", 0.5)
     # or
-    config.traces_sampler = lambda do |context|
-      true
-    end
+    # config.traces_sampler = lambda do |context|
+    #   true
+    # end
   end
 end
