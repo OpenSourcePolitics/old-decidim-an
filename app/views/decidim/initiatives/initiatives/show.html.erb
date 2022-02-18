@@ -15,7 +15,11 @@
   )
 %>
 
-<%= participatory_space_floating_help %>
+<div class="row collapse">
+  <% cache do %>
+    <%= render partial: "decidim/shared/floating_help", locals: { content: raw(t(".help_section")), id: 999 } %>
+  <% end %>
+</div>
 
 <% add_decidim_page_title(translated_attribute(current_initiative.title)) %>
 <% provide :meta_image_url, current_initiative.type.banner_image.url %>
